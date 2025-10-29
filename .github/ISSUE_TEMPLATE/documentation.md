@@ -3,7 +3,7 @@ name: Documentation
 about: 문서 작업 시 기록을 위한 이슈
 title: "[DOCS]"
 labels: docs
-assignees: ''
+assignees: kybaq
 
 ---
 
