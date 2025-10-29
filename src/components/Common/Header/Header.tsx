@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -41,9 +41,9 @@ const Header: React.FC = () => {
   const mypageModalRef = useRef(false);
 
   const toggleMypageModal = () => {
-  mypageModalRef.current = !mypageModalRef.current;
-  setIsMypageModalOpen(mypageModalRef.current);
-};
+    mypageModalRef.current = !mypageModalRef.current;
+    setIsMypageModalOpen(mypageModalRef.current);
+  };
 
   // 로그인 모달 열기
   const handleOpenLoginModal = () => {
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
   useEffect(() => {
     if (!user?.id) return;
     void fetchUserData(user.id);
-  }, [user?.id]); 
+  }, [user?.id]);
 
   // 게시글 작성 클릭 시 로그인 여부 확인
   const handleClickPost = (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -116,7 +116,7 @@ const Header: React.FC = () => {
               alt="@gather_here 모바일 로고"
               width={30}
               height={40}
-              quality={85} 
+              quality={85}
               priority
               className="hidden s:block"
               style={{ objectFit: 'contain', width: 'auto', height: 'auto' }}
@@ -124,7 +124,7 @@ const Header: React.FC = () => {
           </Link>
           <Link href="/gatherHub" className="logo-link">
             <Image
-              src="/logos/gatherHub.svg" 
+              src="/logos/gatherHub.svg"
               alt="@gather_hub 로고"
               width={100}
               height={50}
@@ -148,7 +148,7 @@ const Header: React.FC = () => {
               <SearchBar ref={modalRef} />
             </button>
             {/* 게시글 작성 버튼 */}
-            <Link onClick={(evt) => handleClickPost(evt)} href="/post" passHref>
+            <Link onClick={evt => handleClickPost(evt)} href="/post" passHref>
               <button className="square-header-button-gray">
                 <Image src="/assets/header/write.svg" width={16} height={16} alt="글쓰기 버튼 아이콘" />
               </button>
@@ -174,10 +174,7 @@ const Header: React.FC = () => {
                   <Image src="/assets/header/mobile_logo.svg" alt="마이페이지 아이콘" priority width={14} height={16} />
                 </Link>
 
-                <button onClick={() => 
-                  void signOut()}  
-                  className="shared-button-small-gray-2 ml-2 s:hidden"
-                >
+                <button onClick={() => void signOut()} className="shared-button-small-gray-2 ml-2 s:hidden">
                   로그아웃
                 </button>
               </div>
@@ -196,7 +193,7 @@ const Header: React.FC = () => {
           <div className="fixed inset-0 bg-black opacity-80 z-40" onClick={handleCloseLoginModal}></div>
           <div
             className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-background rounded-[20px] p-4 z-50"
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
           >
             <button
               onClick={handleCloseLoginModal}
@@ -281,8 +278,7 @@ const Header: React.FC = () => {
               </li>
               <li>
                 <button
-                  onClick={() => 
-                    void signOut()} 
+                  onClick={() => void signOut()}
                   className="block w-full text-left text-labelNormal font-base hover:text-fontWhite"
                 >
                   로그아웃

@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-misused-promises */
 'use client';
+
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import InfiniteScrollComponent from '@/components/MainPage/InfiniteScroll/InfiniteScrollComponents';
 import { PostWithUser } from '@/types/posts/Post.type';
@@ -64,12 +62,12 @@ const ProjectContent: React.FC<ProjectContentProps> = () => {
 
     const newPosts = await fetchPosts(page, '프로젝트', filterOptions);
 
-    setPosts((prevPosts) => {
-      const uniqueNewPosts = newPosts.filter((newPost) => !prevPosts.some((post) => post.post_id === newPost.post_id));
+    setPosts(prevPosts => {
+      const uniqueNewPosts = newPosts.filter(newPost => !prevPosts.some(post => post.post_id === newPost.post_id));
       return [...prevPosts, ...uniqueNewPosts];
     });
 
-    setPage((prevPage) => prevPage + 1);
+    setPage(prevPage => prevPage + 1);
 
     if (newPosts.length < 5) {
       setHasMore(false);
@@ -132,7 +130,7 @@ const ProjectContent: React.FC<ProjectContentProps> = () => {
     if (!searchWord) return posts;
     const lowerSearchWord = searchWord.toLowerCase();
     return posts.filter(
-      (post) =>
+      post =>
         post.title?.toLowerCase().includes(lowerSearchWord) ?? post.content.toLowerCase().includes(lowerSearchWord),
     );
   }, [posts, searchWord]);

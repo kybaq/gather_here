@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode, FC } from "react";
-import Modal from "react-modal";
+import { createContext, useContext, useState, useEffect, ReactNode, FC } from 'react';
+import Modal from 'react-modal';
 
 interface ModalContextType {
   openModal: (content: ReactNode, disablePage?: boolean) => void;
@@ -14,10 +14,10 @@ interface ContextProviderProps {
 
 const ModalContext = createContext<ModalContextType>({
   openModal: () => {
-    throw new Error("ModalProvider로 감싸지 않으면 useModal을 사용할 수 없습니다.");
+    throw new Error('ModalProvider로 감싸지 않으면 useModal을 사용할 수 없습니다.');
   },
   closeModal: () => {
-    throw new Error("ModalProvider로 감싸지 않으면 useModal을 사용할 수 없습니다.");
+    throw new Error('ModalProvider로 감싸지 않으면 useModal을 사용할 수 없습니다.');
   },
 });
 
@@ -29,7 +29,7 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
   const [disablePage, setDisablePage] = useState(false);
 
   useEffect(() => {
-    Modal.setAppElement("body");
+    Modal.setAppElement('body');
   }, []);
 
   const openModal = (content: ReactNode, disable = false) => {
@@ -46,12 +46,12 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
 
   useEffect(() => {
     if (disablePage) {
-      document.body.classList.add("page-disabled");
+      document.body.classList.add('page-disabled');
     } else {
-      document.body.classList.remove("page-disabled");
+      document.body.classList.remove('page-disabled');
     }
     return () => {
-      document.body.classList.remove("page-disabled");
+      document.body.classList.remove('page-disabled');
     };
   }, [disablePage]);
 
@@ -69,4 +69,3 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
 };
 
 export default ContextProvider;
-

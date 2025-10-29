@@ -1,5 +1,5 @@
-import ProfilePicture from "@/components/MyPage/MyInfo/ProfilePicture";
-import ProfileInfo from "@/components/MyPage/MyInfo/ProfileInfo";
+import ProfilePicture from '@/components/MyPage/MyInfo/ProfilePicture';
+import ProfileInfo from '@/components/MyPage/MyInfo/ProfileInfo';
 
 const MyInfo = () => {
   return (

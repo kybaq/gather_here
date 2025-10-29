@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+'use client';
 
 const TeamworkQuestions: React.FC<{
   answer1: string;
@@ -25,7 +23,7 @@ const TeamworkQuestions: React.FC<{
               id="answer1"
               name="answer1"
               value={answer1}
-              onChange={(e) => setAnswer1(e.target.value)}
+              onChange={e => setAnswer1(e.target.value)}
               placeholder="답변을 입력하세요."
               className="w-full p-2 shared-input-gray-2 border-[1px] border-fillLight"
             />
@@ -42,7 +40,7 @@ const TeamworkQuestions: React.FC<{
               id="answer2"
               name="answer2"
               value={answer2}
-              onChange={(e) => setAnswer2(e.target.value)}
+              onChange={e => setAnswer2(e.target.value)}
               placeholder="답변을 입력하세요."
               className="w-full p-2 shared-input-gray-2 border-[1px] border-fillLight"
             />
@@ -59,7 +57,7 @@ const TeamworkQuestions: React.FC<{
               id="answer3"
               name="answer3"
               value={answer3}
-              onChange={(e) => setAnswer3(e.target.value)}
+              onChange={e => setAnswer3(e.target.value)}
               placeholder="답변을 입력하세요."
               className="w-full p-2 shared-input-gray-2 border-[1px] border-fillLight"
             />

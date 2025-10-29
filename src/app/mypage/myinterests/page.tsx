@@ -1,5 +1,4 @@
-import React from "react";
-import InterestsTap from "@/components/MyPage/MyInterests/InterestsTap";
+import InterestsTap from '@/components/MyPage/MyInterests/InterestsTap';
 
 const MyInterestsPage = () => {
   return <InterestsTap />;

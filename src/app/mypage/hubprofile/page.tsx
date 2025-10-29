@@ -1,58 +1,58 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { supabase } from "@/utils/supabase/client";
-import { useAuth } from "@/provider/user/UserAuthProvider";
-import { useUserData } from "@/provider/user/UserDataProvider";
-import SelfIntroduction from "@/components/MyPage/HubInfo/Introductioin";
-import HubProfileForm from "@/components/MyPage/HubInfo/HubProfileInfo";
-import TeamworkQuestions from "@/components/MyPage/HubInfo/TeamQuestions";
-import BackgroundPicture from "@/components/MyPage/HubInfo/BackgroundPicture";
-import Toast from "@/components/Common/Toast/Toast";
-import TechStack from "@/components/MyPage/HubInfo/TechStack";
+import { useState, useEffect } from 'react';
+import { supabase } from '@/utils/supabase/client';
+import { useAuth } from '@/provider/user/UserAuthProvider';
+import { useUserData } from '@/provider/user/UserDataProvider';
+import SelfIntroduction from '@/components/MyPage/HubInfo/Introductioin';
+import HubProfileForm from '@/components/MyPage/HubInfo/HubProfileInfo';
+import TeamworkQuestions from '@/components/MyPage/HubInfo/TeamQuestions';
+import BackgroundPicture from '@/components/MyPage/HubInfo/BackgroundPicture';
+import Toast from '@/components/Common/Toast/Toast';
+import TechStack from '@/components/MyPage/HubInfo/TechStack';
 
 const HubProfile: React.FC = () => {
-  const { user } = useAuth(); 
+  const { user } = useAuth();
   const { fetchUserData } = useUserData();
-  const [description, setDescription] = useState("");
-  const [blog, setBlog] = useState("");
-  const [firstLinkType, setFirstLinkType] = useState("");
-  const [firstLink, setFirstLink] = useState("");
-  const [secondLinkType, setSecondLinkType] = useState("");
-  const [secondLink, setSecondLink] = useState("");
-  const [answer1, setAnswer1] = useState("");
-  const [answer2, setAnswer2] = useState("");
-  const [answer3, setAnswer3] = useState("");
+  const [description, setDescription] = useState('');
+  const [blog, setBlog] = useState('');
+  const [firstLinkType, setFirstLinkType] = useState('');
+  const [firstLink, setFirstLink] = useState('');
+  const [secondLinkType, setSecondLinkType] = useState('');
+  const [secondLink, setSecondLink] = useState('');
+  const [answer1, setAnswer1] = useState('');
+  const [answer2, setAnswer2] = useState('');
+  const [answer3, setAnswer3] = useState('');
   const [techStacks, setTechStacks] = useState<string[]>([]);
-  const [toastState, setToastState] = useState({ state: "", message: "" });
+  const [toastState, setToastState] = useState({ state: '', message: '' });
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       if (!user) return;
 
       const { data, error } = await supabase
-        .from("Users")
+        .from('Users')
         .select(
-          "description, blog, first_link_type, first_link, second_link_type, second_link, answer1, answer2, answer3, tech_stacks",
+          'description, blog, first_link_type, first_link, second_link_type, second_link, answer1, answer2, answer3, tech_stacks',
         )
-        .eq("user_id", user.id)
+        .eq('user_id', user.id)
         .single();
 
       if (data) {
-        setDescription(data.description ?? "");
-        setBlog(data.blog ?? "");
-        setFirstLinkType(data.first_link_type ?? "");
-        setFirstLink(data.first_link ?? "");
-        setSecondLinkType(data.second_link_type ?? "");
-        setSecondLink(data.second_link ?? "");
-        setAnswer1(data.answer1 ?? "");
-        setAnswer2(data.answer2 ?? "");
-        setAnswer3(data.answer3 ?? "");
+        setDescription(data.description ?? '');
+        setBlog(data.blog ?? '');
+        setFirstLinkType(data.first_link_type ?? '');
+        setFirstLink(data.first_link ?? '');
+        setSecondLinkType(data.second_link_type ?? '');
+        setSecondLink(data.second_link ?? '');
+        setAnswer1(data.answer1 ?? '');
+        setAnswer2(data.answer2 ?? '');
+        setAnswer3(data.answer3 ?? '');
         setTechStacks(data.tech_stacks ?? []);
       }
 
       if (error) {
-        console.error("사용자 데이터를 가져오지 못했습니다:", error);
+        console.error('사용자 데이터를 가져오지 못했습니다:', error);
       }
     };
 
@@ -61,14 +61,14 @@ const HubProfile: React.FC = () => {
 
   const handleSave = async () => {
     if (!blog) {
-      setToastState({ state: "error", message: "포트폴리오 링크를 작성해주세요!" });
+      setToastState({ state: 'error', message: '포트폴리오 링크를 작성해주세요!' });
       return;
     }
 
     if (!user) return;
 
     const { error } = await supabase
-      .from("Users")
+      .from('Users')
       .update({
         hubCard: true,
         description,
@@ -82,12 +82,12 @@ const HubProfile: React.FC = () => {
         answer3,
         tech_stacks: techStacks,
       })
-      .eq("user_id", user.id);
+      .eq('user_id', user.id);
 
     if (error) {
-      setToastState({ state: "error", message: `저장에 실패했습니다: ${error.message}` });
+      setToastState({ state: 'error', message: `저장에 실패했습니다: ${error.message}` });
     } else {
-      setToastState({ state: "success", message: "저장되었습니다." });
+      setToastState({ state: 'success', message: '저장되었습니다.' });
       if (user?.id) {
         void fetchUserData(user.id);
       }
@@ -135,7 +135,7 @@ const HubProfile: React.FC = () => {
         <Toast
           state={toastState.state}
           message={toastState.message}
-          onClear={() => setToastState({ state: "", message: "" })}
+          onClear={() => setToastState({ state: '', message: '' })}
         />
       )}
     </section>

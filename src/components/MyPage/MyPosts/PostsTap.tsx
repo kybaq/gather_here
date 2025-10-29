@@ -1,23 +1,22 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { useAuth } from "@/provider/user/UserAuthProvider";
-import { fetchPosts } from "@/lib/fetchPosts";
-import PostCardLong from "@/components/Common/Card/PostCard/PostCardLong";
-import MypageList from "@/components/Common/Skeleton/MypageList";
-import Pagination from "@/components/MyPage/Common/Pagination";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { supabase } from "@/utils/supabase/client";
-import { PostWithUser } from "@/types/posts/Post.type";
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '@/provider/user/UserAuthProvider';
+import { fetchPosts } from '@/lib/fetchPosts';
+import PostCardLong from '@/components/Common/Card/PostCard/PostCardLong';
+import MypageList from '@/components/Common/Skeleton/MypageList';
+import Pagination from '@/components/MyPage/Common/Pagination';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { supabase } from '@/utils/supabase/client';
+import { PostWithUser } from '@/types/posts/Post.type';
 
-
-type Tab = "전체" | "스터디" | "프로젝트";
+type Tab = '전체' | '스터디' | '프로젝트';
 
 const PostsTap: React.FC = () => {
   const { user } = useAuth();
   const router = useRouter();
-  const [selectedTab, setSelectedTab] = useState<Tab>("전체");
+  const [selectedTab, setSelectedTab] = useState<Tab>('전체');
   const [posts, setPosts] = useState<PostWithUser[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -25,7 +24,6 @@ const PostsTap: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [postIdToDelete, setPostIdToDelete] = useState<string | null>(null);
   const postsPerPage = 6;
-
 
   // 게시글 데이터 로딩
   useEffect(() => {
@@ -43,7 +41,7 @@ const PostsTap: React.FC = () => {
               page,
               undefined,
               { user_id: user.id },
-              { order: { column: "created_at", ascending: false } },
+              { order: { column: 'created_at', ascending: false } },
             );
 
             if (userPosts.length === 0) {
@@ -57,7 +55,7 @@ const PostsTap: React.FC = () => {
           setPosts(allPosts);
           updateTotalPages(allPosts);
         } catch (error) {
-          console.error("포스트 불러오는 중 오류 발생:", error);
+          console.error('포스트 불러오는 중 오류 발생:', error);
         } finally {
           setLoading(false);
         }
@@ -85,8 +83,8 @@ const PostsTap: React.FC = () => {
 
   // 선택된 탭에 따른 게시글 필터링
   const filterPosts = (allPosts: PostWithUser[], tab: Tab) => {
-    if (tab === "전체") return allPosts;
-    return allPosts.filter((post) => post.category === tab);
+    if (tab === '전체') return allPosts;
+    return allPosts.filter(post => post.category === tab);
   };
 
   // 현재 페이지 기준으로 보여줄 게시글 슬라이싱
@@ -105,16 +103,16 @@ const PostsTap: React.FC = () => {
   const handleDelete = async () => {
     if (postIdToDelete) {
       try {
-        const { error } = await supabase.from("Posts").delete().eq("post_id", postIdToDelete);
+        const { error } = await supabase.from('Posts').delete().eq('post_id', postIdToDelete);
         if (error) {
-          console.error("게시물 삭제 실패:", error);
+          console.error('게시물 삭제 실패:', error);
         } else {
-          const updatedPosts = posts.filter((post) => post.post_id !== postIdToDelete);
+          const updatedPosts = posts.filter(post => post.post_id !== postIdToDelete);
           setPosts(updatedPosts);
           updateTotalPages(filterPosts(updatedPosts, selectedTab));
         }
       } catch (error) {
-        console.error("삭제 중 오류 발생:", error);
+        console.error('삭제 중 오류 발생:', error);
       } finally {
         setIsModalOpen(false);
         setPostIdToDelete(null);
@@ -152,7 +150,11 @@ const PostsTap: React.FC = () => {
               >
                 취소할래요
               </button>
-              <button onClick={() => void handleDelete()} className="shared-button-green w-1/2" aria-label="게시물 삭제">
+              <button
+                onClick={() => void handleDelete()}
+                className="shared-button-green w-1/2"
+                aria-label="게시물 삭제"
+              >
                 삭제할래요
               </button>
             </div>
@@ -163,20 +165,20 @@ const PostsTap: React.FC = () => {
       <div className="sticky z-10 s:relative s:top-auto">
         <div className="flex w-[250px] s:w-full items-center m:justify-start s:justify-center space-x-4 s:space-x-6 p-3 bg-fillStrong rounded-2xl">
           <button
-            className={`text-baseS min-w-[64px] ${selectedTab === "전체" ? "tab-button" : ""}`}
-            onClick={() => handleTabClick("전체")}
+            className={`text-baseS min-w-[64px] ${selectedTab === '전체' ? 'tab-button' : ''}`}
+            onClick={() => handleTabClick('전체')}
           >
             전체
           </button>
           <button
-            className={`text-baseS min-w-[64px] ${selectedTab === "스터디" ? "tab-button" : ""}`}
-            onClick={() => handleTabClick("스터디")}
+            className={`text-baseS min-w-[64px] ${selectedTab === '스터디' ? 'tab-button' : ''}`}
+            onClick={() => handleTabClick('스터디')}
           >
             스터디
           </button>
           <button
-            className={`text-baseS min-w-[66px] ${selectedTab === "프로젝트" ? "tab-button" : ""}`}
-            onClick={() => handleTabClick("프로젝트")}
+            className={`text-baseS min-w-[66px] ${selectedTab === '프로젝트' ? 'tab-button' : ''}`}
+            onClick={() => handleTabClick('프로젝트')}
           >
             프로젝트
           </button>
@@ -189,7 +191,7 @@ const PostsTap: React.FC = () => {
               .fill(0)
               .map((_, index) => <MypageList key={index} />)
           ) : getCurrentPosts().length > 0 ? (
-            getCurrentPosts().map((post) => (
+            getCurrentPosts().map(post => (
               <div key={post.post_id} className="s:w-full h-[261px] relative group mb-4 sm:mb-0">
                 <PostCardLong post={post} />
                 {user?.id === post.user_id && (

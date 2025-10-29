@@ -40,7 +40,7 @@ const Chat = () => {
           className="self-stretch h-full px-5 py-3 bg-fillStrong border-l border-r border-fillNormal flex-col justify-start items-start gap-5 flex overflow-y-scroll scrollbar-hide"
           ref={chatContentDivRef}
         >
-          {messages.map((message) => (
+          {messages.map(message => (
             <div key={`${message.message_id}`} className="w-full mb-3">
               {message.user_id === user?.id ? (
                 <div id="mine" className="self-stretch px-3 flex-col justify-center items-end flex">
@@ -94,7 +94,7 @@ const Chat = () => {
             </div>
           ))}
         </div>
-        <form action="" className="w-full" onSubmit={(evt) => void handleSubmit(evt)} ref={formRef}>
+        <form action="" className="w-full" onSubmit={evt => void handleSubmit(evt)} ref={formRef}>
           {user ? (
             <div
               id="input"
@@ -103,8 +103,8 @@ const Chat = () => {
               <div className="w-full h-full flex justify-center items-center bg-fillNeutral rounded-xl">
                 <textarea
                   value={inputValue}
-                  onChange={(evt) => setInputValue(evt.target.value)}
-                  onKeyDown={(evt) => handleEnterKeyDown(evt)}
+                  onChange={evt => setInputValue(evt.target.value)}
+                  onKeyDown={evt => handleEnterKeyDown(evt)}
                   placeholder="메시지를 입력해보세요"
                   className="w-full h-12 bg-fillNeutral rounded-lg justify-start items-start inline-flex border self-stretch text-fontWhite overflow-auto scrollbar-hide resize-none mr-4 p-3 focus:outline-none"
                 />

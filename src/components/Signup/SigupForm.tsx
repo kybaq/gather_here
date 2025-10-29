@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
-import React from "react";
-import Signup01 from "./Signup01";
-import Signup02 from "./Signup02";
-import Signup03 from "./Signup03";
-import Signup04 from "./Signup04";
-import { useSignup } from "@/provider/user/UserSignupProvider";
+import Signup01 from './Signup01';
+import Signup02 from './Signup02';
+import Signup03 from './Signup03';
+import Signup04 from './Signup04';
+import { useSignup } from '@/provider/user/UserSignupProvider';
 
 const SignupForm: React.FC = () => {
   const { step } = useSignup();

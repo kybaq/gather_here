@@ -1,5 +1,3 @@
-import React from "react";
-
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -22,11 +20,11 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
   return (
     <div className="flex justify-center my-4">
-      {getPaginationNumbers().map((page) => (
+      {getPaginationNumbers().map(page => (
         <button
           key={page}
           className={`px-3 py-1 m rounded-[12px] mx-1 border ${
-            currentPage === page ? " border-primary text-primary" : " border-labelNeutral text-labelAssistive"
+            currentPage === page ? ' border-primary text-primary' : ' border-labelNeutral text-labelAssistive'
           }`}
           onClick={() => handlePageChange(page)}
         >

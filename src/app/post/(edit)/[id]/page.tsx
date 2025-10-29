@@ -97,9 +97,9 @@ const PostEditPage = () => {
       duration: Number(duration),
       total_members: Number(totalMembers),
       personal_link: personalLink,
-      target_position: targetPosition.map((pos) => pos),
+      target_position: targetPosition.map(pos => pos),
       recruitments: Number(recruitments),
-      tech_stack: techStack.map((ts) => ts),
+      tech_stack: techStack.map(ts => ts),
       deadline: deadline ?? '',
       content: content,
       place: place,
@@ -244,7 +244,7 @@ const PostEditPage = () => {
   return (
     <>
       <form
-        onSubmit={(evt) => void handleSubmit(evt)}
+        onSubmit={evt => void handleSubmit(evt)}
         className="w-full mx-auto max-w-[744px] s:max-w-container-s bg-background text-fontWhite rounded-lg mt-5"
       >
         <div className="bg-fillStrong p-5 rounded-t-lg space-y-4">

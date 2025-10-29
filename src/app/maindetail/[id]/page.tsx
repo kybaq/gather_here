@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/client';
 import DOMPurify from 'dompurify';
@@ -128,7 +128,7 @@ const MainDetailPage = () => {
   });
 
   const renderTechStackIcons = (techStack: string[]) => {
-    return techStack.map((tech) => (
+    return techStack.map(tech => (
       <div key={tech} className="inline-flex items-center mr-1">
         <div className="flex items-center my-1 bg-fillNormal px-2.5 py-1 rounded-full">
           <div className="flex items-center">

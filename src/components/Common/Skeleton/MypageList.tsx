@@ -1,5 +1,3 @@
-import React from "react";
-
 const MypageList: React.FC = () => {
   return (
     <div className="w-[244px] h-[260px] s:w-full p-8 m-2 bg-fillAssistive rounded-2xl animate-pulse">

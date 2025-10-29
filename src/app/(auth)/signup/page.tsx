@@ -1,10 +1,9 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { supabase } from "@/utils/supabase/client";
-import SignupForm from "@/components/Signup/SigupForm";
-
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { supabase } from '@/utils/supabase/client';
+import SignupForm from '@/components/Signup/SigupForm';
 
 const SignupPage = () => {
   const router = useRouter();
@@ -17,12 +16,12 @@ const SignupPage = () => {
       } = await supabase.auth.getUser();
 
       if (userError) {
-        console.error("Error fetching logged-in user:", userError);
+        console.error('Error fetching logged-in user:', userError);
         return;
       }
 
       if (!user) {
-        router.push("/");
+        router.push('/');
         return;
       }
     };
