@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { useAuth } from "@/provider/user/UserAuthProvider";
-import { fetchLikedPosts } from "@/lib/fetchPosts";
-import PostCardLong from "@/components/Common/Card/PostCard/PostCardLong";
-import ItEventCardShort from "@/components/Common/Card/PostCard/ItEventCardShort";
-import MypageList from "@/components/Common/Skeleton/MypageList";
-import Pagination from "@/components/MyPage/Common/Pagination";
-import { PostWithUser, ITEvent } from "@/types/posts/Post.type";
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '@/provider/user/UserAuthProvider';
+import { fetchLikedPosts } from '@/lib/fetchPosts';
+import PostCardLong from '@/components/Common/Card/PostCard/PostCardLong';
+import ItEventCardShort from '@/components/Common/Card/PostCard/ItEventCardShort';
+import MypageList from '@/components/Common/Skeleton/MypageList';
+import Pagination from '@/components/MyPage/Common/Pagination';
+import { PostWithUser, ITEvent } from '@/types/posts/Post.type';
 
-type Tab = "전체" | "스터디" | "프로젝트" | "IT 행사";
+type Tab = '전체' | '스터디' | '프로젝트' | 'IT 행사';
 
 const InterestsTap: React.FC = () => {
   const { user } = useAuth();
-  const [selectedTab, setSelectedTab] = useState<Tab>("전체");
+  const [selectedTab, setSelectedTab] = useState<Tab>('전체');
   const [posts, setPosts] = useState<(PostWithUser | ITEvent)[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -28,16 +28,16 @@ const InterestsTap: React.FC = () => {
           const likedPosts = await fetchLikedPosts(user.id);
 
           const filteredPosts = likedPosts.filter((post: PostWithUser | ITEvent) => {
-            if (selectedTab === "전체") return true;
-            if (selectedTab === "IT 행사" && "event_id" in post) return true;
-            if (selectedTab !== "IT 행사" && "category" in post && post.category === selectedTab) return true;
+            if (selectedTab === '전체') return true;
+            if (selectedTab === 'IT 행사' && 'event_id' in post) return true;
+            if (selectedTab !== 'IT 행사' && 'category' in post && post.category === selectedTab) return true;
             return false;
           });
 
           setPosts(filteredPosts);
           setTotalPages(Math.ceil(filteredPosts.length / postsPerPage));
         } catch (error) {
-          console.error("포스트 불러오는 중 오류 발생:", error);
+          console.error('포스트 불러오는 중 오류 발생:', error);
         } finally {
           setLoading(false);
         }
@@ -56,8 +56,8 @@ const InterestsTap: React.FC = () => {
   };
 
   const handleRemoveBookmark = (postId: string | number) => {
-    setPosts((prevPosts) =>
-      prevPosts.filter((post) => (post as PostWithUser).post_id !== postId && (post as ITEvent).event_id !== postId),
+    setPosts(prevPosts =>
+      prevPosts.filter(post => (post as PostWithUser).post_id !== postId && (post as ITEvent).event_id !== postId),
     );
   };
 
@@ -69,26 +69,26 @@ const InterestsTap: React.FC = () => {
       <div className="sticky z-10 s:relative s:top-auto">
         <div className="flex w-[320px] s:w-full items-center m:justify-start s:justify-center space-x-4 s:space-x-6 p-3 bg-fillStrong rounded-2xl">
           <button
-            className={`text-baseS min-w-[60px] ${selectedTab === "전체" ? "tab-button" : ""}`}
-            onClick={() => handleTabClick("전체")}
+            className={`text-baseS min-w-[60px] ${selectedTab === '전체' ? 'tab-button' : ''}`}
+            onClick={() => handleTabClick('전체')}
           >
             전체
           </button>
           <button
-            className={`text-baseS min-w-[60px] ${selectedTab === "스터디" ? "tab-button" : ""}`}
-            onClick={() => handleTabClick("스터디")}
+            className={`text-baseS min-w-[60px] ${selectedTab === '스터디' ? 'tab-button' : ''}`}
+            onClick={() => handleTabClick('스터디')}
           >
             스터디
           </button>
           <button
-            className={`text-baseS min-w-[64px] ${selectedTab === "프로젝트" ? "tab-button" : ""}`}
-            onClick={() => handleTabClick("프로젝트")}
+            className={`text-baseS min-w-[64px] ${selectedTab === '프로젝트' ? 'tab-button' : ''}`}
+            onClick={() => handleTabClick('프로젝트')}
           >
             프로젝트
           </button>
           <button
-            className={`text-baseS min-w-[64px] ${selectedTab === "IT 행사" ? "tab-button" : ""}`}
-            onClick={() => handleTabClick("IT 행사")}
+            className={`text-baseS min-w-[64px] ${selectedTab === 'IT 행사' ? 'tab-button' : ''}`}
+            onClick={() => handleTabClick('IT 행사')}
           >
             <span className="sm:hidden">IT행사</span>
             <span className="hidden sm:inline">IT 행사</span>
@@ -101,12 +101,12 @@ const InterestsTap: React.FC = () => {
             .fill(0)
             .map((_, index) => <MypageList key={index} />)
         ) : currentPosts.length > 0 ? (
-          currentPosts.map((post) => (
+          currentPosts.map(post => (
             <div
               key={(post as PostWithUser).post_id || (post as ITEvent).event_id}
               className="s:w-full h-[261px] mb-4 sm:mb-0"
             >
-              {"event_id" in post ? (
+              {'event_id' in post ? (
                 <ItEventCardShort post={post} onRemoveBookmark={() => handleRemoveBookmark(post.event_id)} />
               ) : (
                 <PostCardLong post={post} onRemoveBookmark={() => handleRemoveBookmark(post.post_id)} />

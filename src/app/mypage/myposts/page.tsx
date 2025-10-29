@@ -1,4 +1,4 @@
-import PostsTap from "@/components/MyPage/MyPosts/PostsTap";
+import PostsTap from '@/components/MyPage/MyPosts/PostsTap';
 
 const MyPostsPage = () => {
   return (

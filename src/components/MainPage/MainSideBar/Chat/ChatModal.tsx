@@ -1,7 +1,7 @@
-import Image from "next/image";
-import React, { FC, ReactNode } from "react";
-import ReactModal from "react-modal";
-import Modal from "react-modal";
+import Image from 'next/image';
+import { FC, ReactNode } from 'react';
+import ReactModal from 'react-modal';
+import Modal from 'react-modal';
 
 interface ChatModalProps {
   isOpen: boolean;
@@ -11,7 +11,7 @@ interface ChatModalProps {
 
 const customStyle: ReactModal.Styles = {
   content: {
-    zIndex: "100",
+    zIndex: '100',
   },
 };
 

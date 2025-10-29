@@ -1,5 +1,5 @@
-import React from "react";
-import LeftNav from "@/components/MyPage/Common/LeftNav";
+import React from 'react';
+import LeftNav from '@/components/MyPage/Common/LeftNav';
 
 const MyPageLayout = ({ children }: { children: React.ReactNode }) => {
   return (

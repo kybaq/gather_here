@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback, ReactNode, useContext, useEffect } from "react";
+import { createContext, useState, useCallback, ReactNode, useContext, useEffect } from 'react';
 
 // 회원가입 상태 인터페이스 (step만 유지)
 interface SignupState {
@@ -29,10 +29,10 @@ export const UserSignupProvider: React.FC<{ children: ReactNode }> = ({ children
   }, []);
 
   // 다음 단계로 이동
-  const nextStep = useCallback(() => setStep((prev) => (prev ?? 1) + 1), []);
+  const nextStep = useCallback(() => setStep(prev => (prev ?? 1) + 1), []);
 
   // 이전 단계로 이동
-  const prevStep = useCallback(() => setStep((prev) => Math.max(initialSignupState.step, (prev ?? 1) - 1)), []);
+  const prevStep = useCallback(() => setStep(prev => Math.max(initialSignupState.step, (prev ?? 1) - 1)), []);
   // 가입 상태 초기화
   const resetSignupUser = useCallback(() => {
     setStep(initialSignupState.step);
@@ -60,7 +60,7 @@ export const UserSignupProvider: React.FC<{ children: ReactNode }> = ({ children
 export const useSignup = (): SignupContextType => {
   const context = useContext(SignupContext);
   if (!context) {
-    throw new Error("useSignup은 UserSignupProvider 내부에서만 사용할 수 있습니다.");
+    throw new Error('useSignup은 UserSignupProvider 내부에서만 사용할 수 있습니다.');
   }
   return context;
 };

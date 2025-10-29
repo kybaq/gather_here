@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent } from 'react';
 
 interface FormInputProps {
   label: string | JSX.Element;
@@ -14,7 +14,7 @@ const FormInput: React.FC<FormInputProps> = ({
   label,
   value,
   onChange,
-  type = "text",
+  type = 'text',
   placeholder,
   maxLength,
   className,
@@ -29,9 +29,9 @@ const FormInput: React.FC<FormInputProps> = ({
         maxLength={maxLength}
         placeholder={placeholder}
         className={`shared-input-gray border-none rounded w-full py-2 px-3 text-labelNeutral leading-tight focus:outline-none ${className} ${
-          type === "date" ? "date-input" : ""
+          type === 'date' ? 'date-input' : ''
         }`}
-        style={{ color: value === "" ? "#919191" : undefined, border: "1px solid #3B3D3F" }}
+        style={{ color: value === '' ? '#919191' : undefined, border: '1px solid #3B3D3F' }}
       />
       <style jsx>{`
         input.shared-input-gray:hover,

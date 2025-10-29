@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react';
 
 // 멤버 카드 인터페이스
 export interface MemberCardProps {

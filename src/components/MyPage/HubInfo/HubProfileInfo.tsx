@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const HubProfileForm: React.FC<{
   blog: string;
@@ -25,9 +25,9 @@ const HubProfileForm: React.FC<{
   secondLink,
   setSecondLink,
 }) => {
-  const [blogError, setBlogError] = useState("");
-  const [firstLinkError, setFirstLinkError] = useState("");
-  const [secondLinkError, setSecondLinkError] = useState("");
+  const [blogError, setBlogError] = useState('');
+  const [firstLinkError, setFirstLinkError] = useState('');
+  const [secondLinkError, setSecondLinkError] = useState('');
 
   // 상태를 필드가 비어있는지에 따라 설정
   const [showFirstLink, setShowFirstLink] = useState(false);
@@ -40,17 +40,17 @@ const HubProfileForm: React.FC<{
   }, [firstLink, secondLink]);
 
   const platforms = [
-    { value: "behance", label: "비핸스" },
-    { value: "github", label: "깃허브" },
-    { value: "instagram", label: "인스타그램" },
-    { value: "brunch", label: "브런치" },
-    { value: "linkedin", label: "링크드인" },
-    { value: "notion", label: "노션" },
-    { value: "pinterest", label: "핀터레스트" },
-    { value: "medium", label: "미디엄" },
-    { value: "tistory", label: "티스토리" },
-    { value: "facebook", label: "페이스북" },
-    { value: "youtube", label: "유튜브" },
+    { value: 'behance', label: '비핸스' },
+    { value: 'github', label: '깃허브' },
+    { value: 'instagram', label: '인스타그램' },
+    { value: 'brunch', label: '브런치' },
+    { value: 'linkedin', label: '링크드인' },
+    { value: 'notion', label: '노션' },
+    { value: 'pinterest', label: '핀터레스트' },
+    { value: 'medium', label: '미디엄' },
+    { value: 'tistory', label: '티스토리' },
+    { value: 'facebook', label: '페이스북' },
+    { value: 'youtube', label: '유튜브' },
   ];
 
   // URL 유효성 검사 (http:// 또는 https:// 자동 추가)
@@ -66,7 +66,7 @@ const HubProfileForm: React.FC<{
       new URL(normalizeURL(url));
       return true;
     } catch (error) {
-      console.warn("Invalid URL:", url, error); 
+      console.warn('Invalid URL:', url, error);
       return false;
     }
   };
@@ -76,24 +76,24 @@ const HubProfileForm: React.FC<{
 
     // URL 유효성 검사
     if (!validateURL(blog)) {
-      setBlogError("올바른 포트폴리오 링크를 입력해주세요.");
+      setBlogError('올바른 포트폴리오 링크를 입력해주세요.');
       return;
     } else {
-      setBlogError("");
+      setBlogError('');
     }
 
     if (firstLink && !validateURL(firstLink)) {
-      setFirstLinkError("올바른 첫 번째 링크를 입력해주세요.");
+      setFirstLinkError('올바른 첫 번째 링크를 입력해주세요.');
       return;
     } else {
-      setFirstLinkError("");
+      setFirstLinkError('');
     }
 
     if (secondLink && !validateURL(secondLink)) {
-      setSecondLinkError("올바른 두 번째 링크를 입력해주세요.");
+      setSecondLinkError('올바른 두 번째 링크를 입력해주세요.');
       return;
     } else {
-      setSecondLinkError("");
+      setSecondLinkError('');
     }
   };
 
@@ -119,9 +119,9 @@ const HubProfileForm: React.FC<{
             id="blog"
             name="blog"
             value={blog}
-            onChange={(e) => setBlog(normalizeURL(e.target.value))}
+            onChange={e => setBlog(normalizeURL(e.target.value))}
             placeholder="포트폴리오 링크를 입력하세요."
-            className={`w-full shared-input-gray-2 border-[1px] ${blogError ? "border-red-500" : "border-fillLight"}`}
+            className={`w-full shared-input-gray-2 border-[1px] ${blogError ? 'border-red-500' : 'border-fillLight'}`}
           />
           {blogError && <p className="text-red-500 text-sm mt-1">{blogError}</p>}
         </div>
@@ -137,11 +137,11 @@ const HubProfileForm: React.FC<{
                 id="firstLinkType"
                 name="firstLinkType"
                 value={firstLinkType}
-                onChange={(e) => setFirstLinkType(e.target.value)}
+                onChange={e => setFirstLinkType(e.target.value)}
                 className="w-1/3 shared-select-gray-2 border-[1px] border-fillLight"
               >
                 <option value="">링크 선택</option>
-                {platforms.map((platform) => (
+                {platforms.map(platform => (
                   <option key={platform.value} value={platform.value}>
                     {platform.label}
                   </option>
@@ -152,7 +152,7 @@ const HubProfileForm: React.FC<{
                 id="firstLink"
                 name="firstLink"
                 value={firstLink}
-                onChange={(e) => setFirstLink(normalizeURL(e.target.value))}
+                onChange={e => setFirstLink(normalizeURL(e.target.value))}
                 placeholder="링크를 입력하세요."
                 className="w-2/3 shared-input-gray-2 border-[1px] border-fillLight"
               />
@@ -182,11 +182,11 @@ const HubProfileForm: React.FC<{
                 id="secondLinkType"
                 name="secondLinkType"
                 value={secondLinkType}
-                onChange={(e) => setSecondLinkType(e.target.value)}
+                onChange={e => setSecondLinkType(e.target.value)}
                 className="w-1/3 shared-select-gray-2 border-[1px] border-fillLight"
               >
                 <option value="">링크 선택</option>
-                {platforms.map((platform) => (
+                {platforms.map(platform => (
                   <option key={platform.value} value={platform.value}>
                     {platform.label}
                   </option>
@@ -197,7 +197,7 @@ const HubProfileForm: React.FC<{
                 id="secondLink"
                 name="secondLink"
                 value={secondLink}
-                onChange={(e) => setSecondLink(normalizeURL(e.target.value))}
+                onChange={e => setSecondLink(normalizeURL(e.target.value))}
                 placeholder="링크를 입력하세요."
                 className="w-2/3 shared-input-gray-2 border-[1px] border-fillLight"
               />

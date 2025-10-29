@@ -44,7 +44,7 @@ const useDraft = () => {
   }, []);
 
   const updateDraft = <K extends keyof DraftPost>(key: K, value: DraftPost[K]) => {
-    setDraft((prevDraft) => ({ ...prevDraft, [key]: value }));
+    setDraft(prevDraft => ({ ...prevDraft, [key]: value }));
   };
 
   const saveDraft = () => {

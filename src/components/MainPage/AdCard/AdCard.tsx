@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import white from "@/../public/Main/AD/white.png";
-import black from "@/../public/Main/AD/black.png";
-import sparta1 from "@/../public/Main/AD/sparta1.png";
-import sparta2 from "@/../public/Main/AD/sparta2.png";
-import hanghae1 from "@/../public/Main/AD/hanghae1.png";
-import hanghae2 from "@/../public/Main/AD/hanghae2.png";
-import Image from "next/image";
+import React, { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import white from '@/../public/Main/AD/white.png';
+import black from '@/../public/Main/AD/black.png';
+import sparta1 from '@/../public/Main/AD/sparta1.png';
+import sparta2 from '@/../public/Main/AD/sparta2.png';
+import hanghae1 from '@/../public/Main/AD/hanghae1.png';
+import hanghae2 from '@/../public/Main/AD/hanghae2.png';
+import Image from 'next/image';
 
 const AdCard: React.FC = () => {
   const settings = {
@@ -24,38 +24,38 @@ const AdCard: React.FC = () => {
   const slideSets = [
     [
       {
-        href: "https://nbcamp.spartacodingclub.kr/job-support",
+        href: 'https://nbcamp.spartacodingclub.kr/job-support',
         src: black,
-        alt: "패스트캠퍼스 부트캠프",
+        alt: '패스트캠퍼스 부트캠프',
       },
       {
-        href: "https://nbcamp.spartacodingclub.kr/job-support",
+        href: 'https://nbcamp.spartacodingclub.kr/job-support',
         src: white,
-        alt: "패스트캠퍼스",
+        alt: '패스트캠퍼스',
       },
     ],
     [
       {
-        href: "https://nbcamp.spartacodingclub.kr/",
+        href: 'https://nbcamp.spartacodingclub.kr/',
         src: sparta1,
-        alt: "내일배움스파르타 부트캠프",
+        alt: '내일배움스파르타 부트캠프',
       },
       {
-        href: "https://nbcamp.spartacodingclub.kr/",
+        href: 'https://nbcamp.spartacodingclub.kr/',
         src: sparta2,
-        alt: "내일배움스파르타 부트캠프",
+        alt: '내일배움스파르타 부트캠프',
       },
     ],
     [
       {
-        href: "https://hanghae99.spartacodingclub.kr/reboot",
+        href: 'https://hanghae99.spartacodingclub.kr/reboot',
         src: hanghae1,
-        alt: "항해99",
+        alt: '항해99',
       },
       {
-        href: "https://hanghae99.spartacodingclub.kr/99club-codingtest",
+        href: 'https://hanghae99.spartacodingclub.kr/99club-codingtest',
         src: hanghae2,
-        alt: "항해99 스터디",
+        alt: '항해99 스터디',
       },
     ],
   ];

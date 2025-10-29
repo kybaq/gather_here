@@ -1,7 +1,7 @@
-import React, { Suspense } from "react";
-import AllContent from "@/components/MainPage/PageContent/AllContent";
+import { Suspense } from 'react';
+import AllContent from '@/components/MainPage/PageContent/AllContent';
 
-const AllPage = async () => {
+const AllPage = () => {
   return (
     <Suspense>
       <AllContent />

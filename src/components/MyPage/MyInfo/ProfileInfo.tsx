@@ -145,7 +145,7 @@ const ProfileInfo: React.FC = () => {
 
   return (
     <section>
-      <form className="space-y-6" onSubmit={(evt) => void handleSubmit(evt)}>
+      <form className="space-y-6" onSubmit={evt => void handleSubmit(evt)}>
         <fieldset className="p-6 s:p-0">
           <h1 className="text-subtitle font-baseBold text-labelNeutral mb-5">기본 정보</h1>
           <div className="grid grid-cols-2 m:grid-cols-1 gap-10 pb-11 border-b-[1px] border-fillNormal">
@@ -172,7 +172,7 @@ const ProfileInfo: React.FC = () => {
                 id="nickname"
                 name="nickname"
                 value={nickname}
-                onChange={(e) => setNickname(e.target.value)}
+                onChange={e => setNickname(e.target.value)}
                 placeholder="닉네임을 입력해주세요."
                 className="w-full shared-input-gray-2 border-[1px] border-fillLight"
               />
@@ -187,7 +187,7 @@ const ProfileInfo: React.FC = () => {
                 id="job"
                 name="job"
                 value={job}
-                onChange={(e) => setJob(e.target.value)}
+                onChange={e => setJob(e.target.value)}
                 className="w-full shared-select-gray-2 border-[1px] border-fillLight"
               >
                 <option value="">선택해주세요</option>
@@ -210,7 +210,7 @@ const ProfileInfo: React.FC = () => {
                 id="experience"
                 name="experience"
                 value={experience}
-                onChange={(e) => setExperience(e.target.value)}
+                onChange={e => setExperience(e.target.value)}
                 className="w-full shared-select-gray-2 border-[1px] border-fillLight"
               >
                 <option value="">선택해주세요</option>

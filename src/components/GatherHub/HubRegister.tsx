@@ -1,12 +1,11 @@
-import React from 'react';
 import { useRouter } from 'next/navigation';
 import { HubRegisterProps } from '@/lib/gatherHub';
 
 const HubRegister: React.FC<HubRegisterProps> = ({ isAuthenticated, isHubRegistered, openLoginModal }) => {
   const router = useRouter();
-  
-   // 버튼 클릭 시 실행되는 함수
-   const handleAddCard = () => {
+
+  // 버튼 클릭 시 실행되는 함수
+  const handleAddCard = () => {
     if (!isAuthenticated) {
       // 로그인하지 않은 경우, 로그인 모달 열기
       openLoginModal();
@@ -37,11 +36,7 @@ const HubRegister: React.FC<HubRegisterProps> = ({ isAuthenticated, isHubRegiste
           stroke="currentColor"
           className="w-6 h-6 sm:w-8 sm:h-8 m-auto text-bright"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 4.5v15m7.5-7.5h-15"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
       </button>
     </div>

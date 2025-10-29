@@ -67,9 +67,9 @@ const PostPage = () => {
       duration: Number(draft.duration),
       total_members: Number(draft.totalMembers),
       personal_link: draft.personalLink,
-      target_position: draft.targetPosition.map((pos) => pos.value),
+      target_position: draft.targetPosition.map(pos => pos.value),
       recruitments: Number(draft.recruitments),
-      tech_stack: draft.techStack.map((ts) => ts.value),
+      tech_stack: draft.techStack.map(ts => ts.value),
       deadline: draft.deadline || '',
       content: draft.content,
       place: draft.place,
@@ -245,7 +245,7 @@ const PostPage = () => {
       <div className="w-full mx-auto max-w-container-l m:max-w-container-m s:max-w-container-s bg-background text-fontWhite rounded-lg shadow-md mb-5"></div>
 
       <form
-        onSubmit={(evt) => void handleSubmit(evt)}
+        onSubmit={evt => void handleSubmit(evt)}
         className="bg-fillStrong w-full mx-auto max-w-[744px] s:max-w-container-s p-5 text-fontWhite rounded-lg"
       >
         <div className="bg-fillStrong rounded-lg shadow-md space-y-4">

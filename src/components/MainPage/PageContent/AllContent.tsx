@@ -16,7 +16,7 @@ const AllContent: React.FC = () => {
     const fetchInitialPosts = async () => {
       const latestPosts: PostWithUser[] = await fetchPosts(1);
       const uniquePosts = latestPosts.filter(
-        (post, index, self) => index === self.findIndex((p) => p.post_id === post.post_id),
+        (post, index, self) => index === self.findIndex(p => p.post_id === post.post_id),
       );
       setPosts(uniquePosts);
     };
@@ -31,15 +31,15 @@ const AllContent: React.FC = () => {
       return;
     }
 
-    setPosts((prevPosts) => {
+    setPosts(prevPosts => {
       const allPosts = [...prevPosts, ...newPosts];
       const uniquePosts = allPosts.filter(
-        (post, index, self) => index === self.findIndex((p) => p.post_id === post.post_id),
+        (post, index, self) => index === self.findIndex(p => p.post_id === post.post_id),
       );
       return uniquePosts;
     });
 
-    setPage((prevPage) => {
+    setPage(prevPage => {
       return prevPage + 1;
     });
   };
@@ -48,7 +48,7 @@ const AllContent: React.FC = () => {
     if (!searchWord) return posts;
     const lowerSearchWord = searchWord.toLowerCase();
     return posts.filter(
-      (post) =>
+      post =>
         post.title?.toLowerCase().includes(lowerSearchWord) ?? post.content.toLowerCase().includes(lowerSearchWord),
     );
   }, [searchWord, posts]);

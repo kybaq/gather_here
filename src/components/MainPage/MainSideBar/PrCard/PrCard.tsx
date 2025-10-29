@@ -1,29 +1,28 @@
-"use client";
+'use client';
 
-import React, { useMemo, useState } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { useLikeStore } from "@/stores/useLikeStore";
-import { useUserData } from "@/provider/user/UserDataProvider";
-import { fetchMembers } from "@/utils/fetchMembers";
-import { MemberCardProps, MemberType } from "@/lib/gatherHub";
-import CardUI from "@/components/GatherHub/CardUI";
-import CardModal from "@/components/GatherHub/CardModal";
-import { techStacks } from "@/lib/techStacks";
-import { secureImageUrl } from "@/utils/imageUtils";
-import Image from "next/image";
-import Head from "next/head";
-import Script from "next/script";
+import React, { useMemo, useState } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useLikeStore } from '@/stores/useLikeStore';
+import { useUserData } from '@/provider/user/UserDataProvider';
+import { fetchMembers } from '@/utils/fetchMembers';
+import { MemberCardProps, MemberType } from '@/lib/gatherHub';
+import CardUI from '@/components/GatherHub/CardUI';
+import CardModal from '@/components/GatherHub/CardModal';
+import { techStacks } from '@/lib/techStacks';
+import { secureImageUrl } from '@/utils/imageUtils';
+import Image from 'next/image';
+import Head from 'next/head';
+import Script from 'next/script';
 
 const PrCard: React.FC = () => {
-
   // SEO 메타 태그
-  const metaTitle = "GatherHub - 개발자 PR 카드";
-  const metaDescription = "프론트엔드 개발자들이 자신의 기술 스택과 경력을 홍보하는 PR 카드 시스템";
-  const metaUrl = "https://gatherhub.com";
-  const metaImage = "https://gatherhub.com/assets/images/gatherhub-thumbnail.jpg";
+  const metaTitle = 'GatherHub - 개발자 PR 카드';
+  const metaDescription = '프론트엔드 개발자들이 자신의 기술 스택과 경력을 홍보하는 PR 카드 시스템';
+  const metaUrl = 'https://gatherhub.com';
+  const metaImage = 'https://gatherhub.com/assets/images/gatherhub-thumbnail.jpg';
 
   // 슬라이더 설정
   const settings = {
@@ -34,7 +33,7 @@ const PrCard: React.FC = () => {
     autoplay: true, // 자동 재생 활성화
     autoplaySpeed: 4000, // 자동 전환 속도 (ms)
     arrows: false, // 화살표 버튼 비활성화
-    lazyLoad: "progressive" as const,// 슬라이드 이미지 로딩 최적화
+    lazyLoad: 'progressive' as const, // 슬라이드 이미지 로딩 최적화
     pauseOnHover: true, // 사용자 경험 개선
   };
 
@@ -50,30 +49,30 @@ const PrCard: React.FC = () => {
   // 좋아요 토글 함수
   const handleToggleLike = async (userId: string) => {
     if (!userData?.user_id) {
-      alert("로그인이 필요합니다."); // UI 알림 추가
+      alert('로그인이 필요합니다.'); // UI 알림 추가
       return;
     }
-  
+
     try {
       await toggleLike(userId, userData.user_id);
     } catch (error) {
-      alert("좋아요 처리 중 오류 발생"); // UI 알림 추가
-      console.error("좋아요 처리 중 오류 발생:", error);
+      alert('좋아요 처리 중 오류 발생'); // UI 알림 추가
+      console.error('좋아요 처리 중 오류 발생:', error);
     }
   };
 
   // React Query를 사용하여 데이터 가져오기 (무한 스크롤 방식)
   const { data, isLoading, isError } = useInfiniteQuery({
-    queryKey: ["members"], 
+    queryKey: ['members'],
     queryFn: ({ pageParam = 1 }) => fetchMembers(pageParam),
-    getNextPageParam: (lastPage) => (lastPage?.nextPage ? lastPage.nextPage : undefined), // 안정성 추가
+    getNextPageParam: lastPage => (lastPage?.nextPage ? lastPage.nextPage : undefined), // 안정성 추가
     initialPageParam: 1,
   });
 
   // 가져온 멤버 데이터를 슬라이드에 사용할 형태로 변환
   const slides = useMemo<MemberType[]>(() => {
     if (!data) return []; // 데이터가 없을 경우 빈 배열 반환
-    return data.pages.flatMap((page) => page.members).slice(0, 10); // 최대 10개의 멤버만 슬라이드에 표시
+    return data.pages.flatMap(page => page.members).slice(0, 10); // 최대 10개의 멤버만 슬라이드에 표시
   }, [data, likedMembers]);
 
   // 데이터 로딩 중일 경우 로딩 메시지 표시
@@ -102,31 +101,31 @@ const PrCard: React.FC = () => {
       {/* JSON-LD 추가 */}
       <Script type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": metaTitle,
-          "description": metaDescription,
-          "url": metaUrl,
-          "image": metaImage,
-          "publisher": {
-            "@type": "Organization",
-            "name": "GatherHub",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://gatherhub.com/assets/images/logo.png"
-            }
-          }
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: metaTitle,
+          description: metaDescription,
+          url: metaUrl,
+          image: metaImage,
+          publisher: {
+            '@type': 'Organization',
+            name: 'GatherHub',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://gatherhub.com/assets/images/logo.png',
+            },
+          },
         })}
       </Script>
 
       {/* 섹션 제목 */}
       <h2 className="flex items-center my-3 text-labelNormal">
-        <Image 
-          src="/assets/gif/mic.webp" 
-          alt="마이크 아이콘" 
-          width={20} 
-          height={20} 
-          className="mr-1" 
+        <Image
+          src="/assets/gif/mic.webp"
+          alt="마이크 아이콘"
+          width={20}
+          height={20}
+          className="mr-1"
           priority
           fetchPriority="high"
         />
@@ -136,9 +135,9 @@ const PrCard: React.FC = () => {
       {/* 슬라이더 */}
       <div className="flex justify-center">
         <Slider {...settings} className="w-full max-w-[680px] flex justify-center">
-          {slides.map((member) => {
+          {slides.map(member => {
             const liked = likedMembers?.[member.user_id] || false; // 현재 멤버의 좋아요 상태 확인
-          
+
             return (
               <div key={member.user_id} className="flex justify-center px-4">
                 <CardUI
@@ -153,7 +152,6 @@ const PrCard: React.FC = () => {
           })}
         </Slider>
       </div>
-      
 
       {/* 모달 */}
       {selectedMember && (
@@ -163,9 +161,7 @@ const PrCard: React.FC = () => {
           {...selectedMember} // 선택된 멤버의 정보 전달
           handleToggleLike={() => void handleToggleLike(selectedMember.user_id)}
           secureImageUrl={secureImageUrl}
-          selectedTechStacks={techStacks.filter((stack) =>
-            selectedMember.tech_stacks?.includes(stack.id)
-          )}
+          selectedTechStacks={techStacks.filter(stack => selectedMember.tech_stacks?.includes(stack.id))}
         />
       )}
     </div>

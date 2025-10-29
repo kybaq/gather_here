@@ -75,7 +75,7 @@ export const fetchPosts = async (
   if (error) throw new Error(error.message);
 
   // Supabase join 결과가 배열일 수 있어서 정제
-  const formatted = (data ?? []).map((post) => {
+  const formatted = (data ?? []).map(post => {
     const user = Array.isArray(post.user)
       ? (post.user[0] as PostWithUser['user'])
       : (post.user as PostWithUser['user']);
@@ -126,7 +126,7 @@ export const fetchPostsWithDeadLine = async (days: number, category?: string): P
   if (error) throw new Error(error.message);
 
   // Supabase join 결과로 인해 user가 배열일 수 있어 단일 객체로 정제
-  const formatted = (data ?? []).map((post) => {
+  const formatted = (data ?? []).map(post => {
     const user = Array.isArray(post.user)
       ? (post.user[0] as PostWithUser['user'])
       : (post.user as PostWithUser['user']);
@@ -164,8 +164,8 @@ export const fetchLikedPosts = async (userId: string): Promise<(PostWithUser | I
     return [];
   }
 
-  const postIds = interestsData.map((interest) => interest.post_id);
-  const eventIds = itInterestsData.map((interest) => interest.event_id);
+  const postIds = interestsData.map(interest => interest.post_id);
+  const eventIds = itInterestsData.map(interest => interest.event_id);
 
   // 관심 게시글 상세 조회
   const { data: postsData, error: postsError } = await supabase

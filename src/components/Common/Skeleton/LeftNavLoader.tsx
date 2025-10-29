@@ -1,5 +1,3 @@
-import React from "react";
-
 const LeftNavLoader: React.FC = () => {
   return (
     <div className="animate-pulse flex items-center gap-3 mb-5">

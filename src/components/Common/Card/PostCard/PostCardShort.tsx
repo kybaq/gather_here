@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PostWithUser } from '@/types/posts/Post.type';
 import Image from 'next/image';
 import Link from 'next/link';

@@ -1,12 +1,10 @@
-import React from "react";
-
 const MypageProfileInfo: React.FC = () => {
   const fields = [
-    { width: "w-24", height: "h-10" },
-    { width: "w-20", height: "h-10" },
-    { width: "w-20", height: "h-10" },
-    { width: "w-20", height: "h-10" },
-    { width: "w-20", height: "h-10" },
+    { width: 'w-24', height: 'h-10' },
+    { width: 'w-20', height: 'h-10' },
+    { width: 'w-20', height: 'h-10' },
+    { width: 'w-20', height: 'h-10' },
+    { width: 'w-20', height: 'h-10' },
   ];
 
   return (

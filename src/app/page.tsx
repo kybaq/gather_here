@@ -1,4 +1,3 @@
-import React from 'react';
 import AllPage from './(mainpage)/all/page';
 import NavTabs from '@/components/MainPage/NavTab/NavTabs';
 

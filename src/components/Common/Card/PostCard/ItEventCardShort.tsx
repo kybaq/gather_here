@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Tables } from '@/types/supabase';
 import { NextPage } from 'next';
 import Image from 'next/image';

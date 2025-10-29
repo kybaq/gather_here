@@ -2,7 +2,7 @@
 
 import { PostWithUser } from '@/types/posts/Post.type';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import LikeButton from '@/components/MainDetail/LikeButton';

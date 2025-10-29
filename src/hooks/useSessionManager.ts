@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
-import { supabase } from "@/utils/supabase/client";
+import { useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { supabase } from '@/utils/supabase/client';
 import { User } from '@supabase/supabase-js';
-import { throttle } from "lodash";
+import { throttle } from 'lodash';
 
 export const useSessionManager = (resetAuthUser: () => Promise<void>, rememberMe: boolean, user: User | null) => {
   const router = useRouter();
@@ -22,20 +22,23 @@ export const useSessionManager = (resetAuthUser: () => Promise<void>, rememberMe
   // 자동 로그인 사용자는 활동 감지를 하지 않음. 대신 55분마다 세션 갱신.
   useEffect(() => {
     if (rememberMe) {
-      console.log("자동 로그인 활성화됨: 세션 유지 중...");
+      console.log('자동 로그인 활성화됨: 세션 유지 중...');
 
-      const interval = setInterval(() => {
-        void (async () => {
-          const { data, error } = await supabase.auth.getSession();
-          
-          if (error || !data.session) {
-            console.error("세션 갱신 실패:", error);
-            await resetAuthUser(); // 세션 만료 시 로그아웃 처리
-          } else {
-          console.log("세션이 정상 유지됨.");
-          }
-        }) ();
-        }, 55 * 60 * 1000); // 55분마다 세션 갱신 시도
+      const interval = setInterval(
+        () => {
+          void (async () => {
+            const { data, error } = await supabase.auth.getSession();
+
+            if (error || !data.session) {
+              console.error('세션 갱신 실패:', error);
+              await resetAuthUser(); // 세션 만료 시 로그아웃 처리
+            } else {
+              console.log('세션이 정상 유지됨.');
+            }
+          })();
+        },
+        55 * 60 * 1000,
+      ); // 55분마다 세션 갱신 시도
 
       return () => clearInterval(interval);
     }
@@ -44,7 +47,7 @@ export const useSessionManager = (resetAuthUser: () => Promise<void>, rememberMe
   // 사용자의 활동이 감지될 때마다 세션 타이머를 리셋하여 1시간 동안 활동이 없을 때만 로그아웃되도록 설정
   const resetSessionTimer = () => {
     if (!user) return; // 유저 없으면 아예 감지 무시
-    console.log("사용자 활동 감지됨: 세션 연장");
+    console.log('사용자 활동 감지됨: 세션 연장');
     lastActivityTimeRef.current = Date.now(); // 마지막 활동 시간 업데이트
 
     // 기존 세션 타이머 제거
@@ -53,23 +56,26 @@ export const useSessionManager = (resetAuthUser: () => Promise<void>, rememberMe
     }
 
     // 1시간 후 자동 로그아웃 설정
-    sessionTimeoutRef.current = setTimeout(() => {
-      void (async () => {
-        const timeSinceLastActivity = Date.now() - lastActivityTimeRef.current;
-        
-        // 1시간 동안 추가 활동이 없으면 로그아웃 처리
-        if (timeSinceLastActivity >= 60 * 60 * 1000) {
-          console.log("1시간 동안 활동 없음: 자동 로그아웃");
-          await resetAuthUser();
+    sessionTimeoutRef.current = setTimeout(
+      () => {
+        void (async () => {
+          const timeSinceLastActivity = Date.now() - lastActivityTimeRef.current;
 
-          // 로그아웃 후 세션 만료 여부를 최종 확인 후 페이지 이동
-          const { data } = await supabase.auth.getSession();
-          if (!data.session) {
-            router.push("/");
+          // 1시간 동안 추가 활동이 없으면 로그아웃 처리
+          if (timeSinceLastActivity >= 60 * 60 * 1000) {
+            console.log('1시간 동안 활동 없음: 자동 로그아웃');
+            await resetAuthUser();
+
+            // 로그아웃 후 세션 만료 여부를 최종 확인 후 페이지 이동
+            const { data } = await supabase.auth.getSession();
+            if (!data.session) {
+              router.push('/');
+            }
           }
-        }
-      })();
-    }, 60 * 60 * 1000); // 1시간 후 로그아웃
+        })();
+      },
+      60 * 60 * 1000,
+    ); // 1시간 후 로그아웃
   };
 
   // 사용자의 활동을 감지하고 동적 스로틀링을 적용하여 CPU 부담을 최소화
@@ -88,12 +94,12 @@ export const useSessionManager = (resetAuthUser: () => Promise<void>, rememberMe
     }, throttleDelay);
 
     // 감지할 이벤트 등록
-    const events = ["mousemove", "keydown", "mousedown", "wheel"];
-    events.forEach((event) => document.addEventListener(event, activityHandler));
+    const events = ['mousemove', 'keydown', 'mousedown', 'wheel'];
+    events.forEach(event => document.addEventListener(event, activityHandler));
 
     return () => {
       // 이벤트 리스너 제거 및 타이머 정리
-      events.forEach((event) => document.removeEventListener(event, activityHandler));
+      events.forEach(event => document.removeEventListener(event, activityHandler));
       activityHandler.cancel();
       if (sessionTimeoutRef.current) clearTimeout(sessionTimeoutRef.current);
     };
@@ -103,53 +109,51 @@ export const useSessionManager = (resetAuthUser: () => Promise<void>, rememberMe
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        console.log("탭이 비활성화됨: 로그아웃 감지 시작");
+        console.log('탭이 비활성화됨: 로그아웃 감지 시작');
 
         let elapsedInactiveTime = 0;
         let checkDelay = 10 * 60 * 1000; // 초기 감지 간격 10분
 
         activityCheckIntervalRef.current = setInterval(() => {
           void (async () => {
-
             elapsedInactiveTime += checkDelay;
-            
+
             // 10분 → 30분 → 60분으로 감지 간격 증가
             checkDelay = calculateThrottleDelay(elapsedInactiveTime) ?? checkDelay;
-            
+
             const timeSinceLastActivity = Date.now() - lastActivityTimeRef.current;
             if (timeSinceLastActivity >= 60 * 60 * 1000) {
-              console.log("1시간 동안 활동 없음 (비활성 탭 포함): 자동 로그아웃");
-              
+              console.log('1시간 동안 활동 없음 (비활성 탭 포함): 자동 로그아웃');
+
               await resetAuthUser();
-              
+
               // 로그아웃 후 세션 만료 여부를 최종 확인 후 페이지 이동
               const { data } = await supabase.auth.getSession();
               if (!data.session) {
-                router.push("/");
+                router.push('/');
               }
             }
           })();
-          }, checkDelay);
+        }, checkDelay);
       } else {
         // 사용자가 다시 탭을 활성화하면 감지 중단
         if (activityCheckIntervalRef.current) {
           clearInterval(activityCheckIntervalRef.current);
           activityCheckIntervalRef.current = null;
-          console.log("탭이 다시 활성화됨: 자동 로그아웃 감지 중지");
+          console.log('탭이 다시 활성화됨: 자동 로그아웃 감지 중지');
         }
       }
     };
 
     // visibilitychange 이벤트 등록
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       // 이벤트 리스너 제거 및 타이머 정리
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (activityCheckIntervalRef.current) clearInterval(activityCheckIntervalRef.current);
     };
   }, [resetAuthUser, router]);
 
   return {};
 };
-

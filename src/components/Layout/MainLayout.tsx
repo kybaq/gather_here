@@ -1,5 +1,5 @@
-import NavTabs from "@/components/MainPage/NavTab/NavTabs";
-import MainSideBar from "../MainPage/MainSideBar/MainSideBar";
+import NavTabs from '@/components/MainPage/NavTab/NavTabs';
+import MainSideBar from '../MainPage/MainSideBar/MainSideBar';
 
 const MainLayout = ({
   children,
