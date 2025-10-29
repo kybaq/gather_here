@@ -1,8 +1,8 @@
 ---
-name: Chore
-about: 기타 작업 기록을 위한 이슈
-title: "[CHORE]"
-labels: chore
+name: Refactor
+about: 리팩토링 작업 시 기록을 위한 이슈
+title: "[REFACTOR]"
+labels: refactor
 assignees: kybaq
 
 ---
