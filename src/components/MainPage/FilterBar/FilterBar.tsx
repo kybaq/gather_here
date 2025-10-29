@@ -1,5 +1,5 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
 
 interface FilterBarProps {
   selectedPosition: string;
@@ -34,7 +34,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
   };
 
   const handleDurationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const duration = event.target.value === "" ? null : parseInt(event.target.value, 10);
+    const duration = event.target.value === '' ? null : parseInt(event.target.value, 10);
     onChange(selectedPosition, selectedPlace, selectedLocation, duration);
   };
 
@@ -43,11 +43,11 @@ const FilterBar: React.FC<FilterBarProps> = ({
       <div className="grid grid-cols-1 gap-2 w-full s:grid-cols-2 md:grid-cols-4 md:gap-3">
         <select
           className={`shared-select-gray-2 ${
-            selectedPosition ? "shared-select" : "shared-select-gray-2"
+            selectedPosition ? 'shared-select' : 'shared-select-gray-2'
           } cursor-pointer`}
           value={selectedPosition}
           onChange={handlePositionChange}
-          style={{ height: "40px", minHeight: "40px", lineHeight: "15px", padding: "0 1rem" }}
+          style={{ height: '40px', minHeight: '40px', lineHeight: '15px', padding: '0 1rem' }}
         >
           <option value="">직군</option>
           <option value="프론트엔드">프론트엔드</option>
@@ -61,10 +61,10 @@ const FilterBar: React.FC<FilterBarProps> = ({
           <option value="마케터">마케터</option>
         </select>
         <select
-          className={`shared-select-gray-2 ${selectedPlace ? "shared-select" : "shared-select-gray-2"} cursor-pointer`}
+          className={`shared-select-gray-2 ${selectedPlace ? 'shared-select' : 'shared-select-gray-2'} cursor-pointer`}
           value={selectedPlace}
           onChange={handlePlaceChange}
-          style={{ height: "40px", minHeight: "40px", lineHeight: "15px", padding: "0 1rem" }}
+          style={{ height: '40px', minHeight: '40px', lineHeight: '15px', padding: '0 1rem' }}
         >
           <option value="">방식</option>
           <option value="온/오프라인">온/오프라인</option>
@@ -73,11 +73,11 @@ const FilterBar: React.FC<FilterBarProps> = ({
         </select>
         <select
           className={`shared-select-gray-2 ${
-            selectedLocation ? "shared-select" : "shared-select-gray-2"
+            selectedLocation ? 'shared-select' : 'shared-select-gray-2'
           } cursor-pointer`}
           value={selectedLocation}
           onChange={handleLocationChange}
-          style={{ height: "40px", minHeight: "40px", lineHeight: "15px", padding: "0 1rem" }}
+          style={{ height: '40px', minHeight: '40px', lineHeight: '15px', padding: '0 1rem' }}
         >
           <option value="">지역</option>
           <option value="서울">서울</option>
@@ -91,11 +91,11 @@ const FilterBar: React.FC<FilterBarProps> = ({
         </select>
         <select
           className={`shared-select-gray-2 ${
-            selectedDuration ? "shared-select" : "shared-select-gray-2"
+            selectedDuration ? 'shared-select' : 'shared-select-gray-2'
           } cursor-pointer`}
-          value={selectedDuration !== null ? selectedDuration.toString() : ""}
+          value={selectedDuration !== null ? selectedDuration.toString() : ''}
           onChange={handleDurationChange}
-          style={{ height: "40px", minHeight: "40px", lineHeight: "15px", padding: "0 1rem" }}
+          style={{ height: '40px', minHeight: '40px', lineHeight: '15px', padding: '0 1rem' }}
         >
           <option value="">기간</option>
           <option value="1">1개월</option>

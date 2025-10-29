@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+'use client';
 
 const SelfIntroduction: React.FC<{ description: string; setDescription: (value: string) => void }> = ({
   description,

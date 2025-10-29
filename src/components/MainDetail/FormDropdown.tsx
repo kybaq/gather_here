@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent } from 'react';
 
 interface FormDropdownProps {
   label: string;
@@ -31,14 +31,14 @@ const FormDropdown: React.FC<FormDropdownProps> = ({
         multiple={multiple}
         className={`shared-select-gray border-none rounded w-full py-2 px-3 text-labelNeutral leading-tight focus:outline-none focus:ring-2 focus:ring-c3e88d focus:border-c3e88d hover:border-c3e88d ${className}`}
         style={{
-          color: value === "" ? "#919191" : undefined,
-          border: "1px solid #3B3D3F",
+          color: value === '' ? '#919191' : undefined,
+          border: '1px solid #3B3D3F',
         }}
       >
-        <option value="" style={{ color: "#919191" }}>
+        <option value="" style={{ color: '#919191' }}>
           {placeholder}
         </option>
-        {options.map((option) => (
+        {options.map(option => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>

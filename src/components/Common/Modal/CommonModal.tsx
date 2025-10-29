@@ -1,5 +1,5 @@
-import React, { FC, ReactNode } from "react";
-import Modal from "react-modal";
+import { FC, ReactNode } from 'react';
+import Modal from 'react-modal';
 
 interface CommonModalProps {
   isOpen: boolean;

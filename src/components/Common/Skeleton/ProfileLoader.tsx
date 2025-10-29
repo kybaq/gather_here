@@ -1,5 +1,3 @@
-import React from "react";
-
 const ProfileLoader: React.FC<{ className?: string }> = ({ className }) => {
   return (
     <div className={`animate-pulse ${className}`}>

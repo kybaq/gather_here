@@ -1,5 +1,3 @@
-import React from "react";
-
 const MypageProfilePicture: React.FC = () => {
   return (
     <div className="px-6 pt-6 pb-10 s:p-0 s:pb-4 border-b-[1px] border-fillNormal animate-pulse">

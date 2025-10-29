@@ -1,5 +1,3 @@
-import React from "react";
-
 const CarouselLoader = () => {
   return (
     <div className="flex animate-pulse w-full">

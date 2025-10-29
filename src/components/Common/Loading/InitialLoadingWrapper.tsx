@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import PuzzleAnimation from "./PuzzleAnimation";
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import PuzzleAnimation from './PuzzleAnimation';
 
 interface InitialLoadingWrapperProps {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ const InitialLoadingWrapper: React.FC<InitialLoadingWrapperProps> = ({ children 
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname === "/all") {
+    if (pathname === '/all') {
       setTimeout(() => {
         setInitialLoading(false);
       }, 500);

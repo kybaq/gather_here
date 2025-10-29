@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useRef, useEffect, forwardRef, useImperativeHandle, useState, FormEvent } from "react";
-import { createPortal } from "react-dom";
-import useSearch from "@/hooks/useSearch";
-import { SearchModalRef } from "@/types/refs/SearchModal";
+import React, { useRef, useEffect, forwardRef, useImperativeHandle, useState, FormEvent } from 'react';
+import { createPortal } from 'react-dom';
+import useSearch from '@/hooks/useSearch';
+import { SearchModalRef } from '@/types/refs/SearchModal';
 
 const SearchModal = forwardRef<SearchModalRef>((props, ref) => {
   const { searchWord, setSearchWord, handleSearch } = useSearch();
@@ -25,11 +25,11 @@ const SearchModal = forwardRef<SearchModalRef>((props, ref) => {
     };
 
     if (isOpen) {
-      document.addEventListener("mousedown", handleOutsideClick);
+      document.addEventListener('mousedown', handleOutsideClick);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [isOpen]);
 
@@ -74,7 +74,7 @@ const SearchModal = forwardRef<SearchModalRef>((props, ref) => {
                 />
               </form>
             </div>
-            <button onClick={() => setSearchWord("")} type="button" aria-label="검색어 지우기">
+            <button onClick={() => setSearchWord('')} type="button" aria-label="검색어 지우기">
               <div data-svg-wrapper>
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="28" height="28" rx="7" fill="#28282A" />
@@ -95,6 +95,6 @@ const SearchModal = forwardRef<SearchModalRef>((props, ref) => {
   );
 });
 
-SearchModal.displayName = "SearchModal";
+SearchModal.displayName = 'SearchModal';
 
 export default SearchModal;

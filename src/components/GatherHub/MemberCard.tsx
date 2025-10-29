@@ -1,14 +1,13 @@
-"use client";
-import React, { useState, useMemo } from "react";
-import { useLikeStore } from "@/stores/useLikeStore";
-import { useUserData } from "@/provider/user/UserDataProvider";
-import CardUI from "./CardUI"; 
-import CardModal from "./CardModal";
-import ProfileExtend from "./ProfileExtend"; 
-import { MemberCardProps } from "@/lib/gatherHub";
-import { techStacks } from "@/lib/techStacks";
-import { secureImageUrl } from "@/utils/imageUtils";
-
+'use client';
+import { useState, useMemo } from 'react';
+import { useLikeStore } from '@/stores/useLikeStore';
+import { useUserData } from '@/provider/user/UserDataProvider';
+import CardUI from './CardUI';
+import CardModal from './CardModal';
+import ProfileExtend from './ProfileExtend';
+import { MemberCardProps } from '@/lib/gatherHub';
+import { techStacks } from '@/lib/techStacks';
+import { secureImageUrl } from '@/utils/imageUtils';
 
 const MemberCard: React.FC<MemberCardProps> = ({
   user_id,
@@ -28,7 +27,6 @@ const MemberCard: React.FC<MemberCardProps> = ({
   second_link,
   tech_stacks,
 }) => {
-
   // 모달 상태 관리 (카드 모달 & 프로필 확장 모달)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -46,17 +44,17 @@ const MemberCard: React.FC<MemberCardProps> = ({
   // 좋아요 버튼 클릭 시 실행되는 함수
   const handleToggleLike = () => {
     if (!currentUserId) {
-      console.warn("좋아요 실패: 로그인된 사용자가 없습니다.");
+      console.warn('좋아요 실패: 로그인된 사용자가 없습니다.');
       return;
     }
-    
+
     void toggleLike(user_id, currentUserId);
   };
 
   // 기술 스택 필터링 (사용자가 선택한 기술 스택과 전체 스택 비교)
   const selectedTechStacks = useMemo(() => {
     if (!tech_stacks) return [];
-    return techStacks.filter((stack) => tech_stacks.includes(stack.id));
+    return techStacks.filter(stack => tech_stacks.includes(stack.id));
   }, [tech_stacks]);
 
   return (

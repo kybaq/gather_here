@@ -1,21 +1,20 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import ExperienceLevelButton from "./components/ExperienceLevelButton";
-import { useSignup } from "@/provider/user/UserSignupProvider";
-import { useUserData } from "@/provider/user/UserDataProvider";
+import { useState } from 'react';
+import ExperienceLevelButton from './components/ExperienceLevelButton';
+import { useSignup } from '@/provider/user/UserSignupProvider';
+import { useUserData } from '@/provider/user/UserDataProvider';
 
-const experienceLevels = ["1년 미만", "1년", "2년", "3년", "4년", "5년", "6년", "7년", "8년 이상"];
+const experienceLevels = ['1년 미만', '1년', '2년', '3년', '4년', '5년', '6년', '7년', '8년 이상'];
 
 const Signup02: React.FC = () => {
-
   const { nextStep, prevStep } = useSignup();
-  const { setUserData } = useUserData(); 
-  const [selectedExperience, setSelectedExperience] = useState<string>("");
+  const { setUserData } = useUserData();
+  const [selectedExperience, setSelectedExperience] = useState<string>('');
 
   const handleExperienceSelection = (experience: string) => {
     setSelectedExperience(experience);
-    setUserData((prev) => ({
+    setUserData(prev => ({
       ...prev!,
       experience,
     }));
@@ -25,7 +24,7 @@ const Signup02: React.FC = () => {
   return (
     <div
       className="flex justify-center items-center min-h-screen bg-black bg-opacity-50"
-      style={{ marginTop: "-30px" }}
+      style={{ marginTop: '-30px' }}
     >
       <div className="s:w-[370px] s:h-[580px] w-[430px] h-[610px] relative bg-background rounded-[20px] p-4 select-none border border-background shadow-lg">
         {prevStep && (
@@ -54,7 +53,7 @@ const Signup02: React.FC = () => {
           경력에 맞게 닮고 싶은 시니어, <br /> 챙겨 주고 싶은 주니어를 소개해 드려요.
         </div>
         <div className="grid grid-cols-3 gap-1 s:mt-7 mt-6 s:w-[335px] w-[370px] h-[365px] s:h-[335px] mx-auto">
-          {experienceLevels.map((experience) => (
+          {experienceLevels.map(experience => (
             <ExperienceLevelButton
               key={experience}
               experience={experience}

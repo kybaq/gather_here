@@ -1,11 +1,10 @@
-"use client";
-import { useUserData } from "@/provider/user/UserDataProvider"; 
-import { useLikeStore } from "@/stores/useLikeStore";
-import MemberCard from "@/components/GatherHub/MemberCard";
-import { useEffect, useState } from "react";
-import { supabase } from "@/utils/supabase/client";
-import { secureImageUrl } from "@/utils/imageUtils";
-
+'use client';
+import { useUserData } from '@/provider/user/UserDataProvider';
+import { useLikeStore } from '@/stores/useLikeStore';
+import MemberCard from '@/components/GatherHub/MemberCard';
+import { useEffect, useState } from 'react';
+import { supabase } from '@/utils/supabase/client';
+import { secureImageUrl } from '@/utils/imageUtils';
 
 interface LikedMember {
   user_id: string;
@@ -26,7 +25,6 @@ interface LikedMember {
   tech_stacks?: string[] | null;
 }
 
-
 // MyPeoplePage 컴포넌트
 const MyPeoplePage: React.FC = () => {
   const { userData } = useUserData(); // 사용자 데이터 가져오기
@@ -44,51 +42,51 @@ const MyPeoplePage: React.FC = () => {
       }
       setLoading(true); // 로딩 시작
       setError(null); // 이전 에러 초기화
-  
+
       try {
         // 좋아요 상태 동기화
         await syncLikesWithServer(userData.user_id);
-  
+
         // 좋아요한 멤버 ID 가져오기
         const { data: interestsData, error: interestsError } = await supabase
-          .from("User_Interests")
-          .select("liked_user_id")
-          .eq("user_id", userData.user_id);
-  
+          .from('User_Interests')
+          .select('liked_user_id')
+          .eq('user_id', userData.user_id);
+
         if (interestsError) {
-          console.error("좋아요한 멤버 ID를 불러오는 중 오류 발생:", interestsError.message);
-          setError("좋아요한 멤버를 불러오는 중 오류가 발생했습니다.");
+          console.error('좋아요한 멤버 ID를 불러오는 중 오류 발생:', interestsError.message);
+          setError('좋아요한 멤버를 불러오는 중 오류가 발생했습니다.');
           setLoading(false); // 에러 발생 시 로딩 중지
           return;
         }
-  
+
         if (!interestsData || interestsData.length === 0) {
           setLikedMemberData([]); // 관심 멤버가 없을 경우 빈 배열로 설정
           setLoading(false); // 로딩 중지
           return;
         }
-  
+
         // 좋아요한 멤버 정보 가져오기
-        const likedUserIds = interestsData.map((interest) => interest.liked_user_id);
+        const likedUserIds = interestsData.map(interest => interest.liked_user_id);
         const { data: likedMembersData, error: membersError } = await supabase
-          .from("Users")
-          .select("*")
-          .in("user_id", likedUserIds);
-  
+          .from('Users')
+          .select('*')
+          .in('user_id', likedUserIds);
+
         if (membersError) {
-          console.error("좋아요한 멤버 정보를 불러오는 중 오류 발생:", membersError.message);
-          setError("멤버 정보를 불러오는 중 오류가 발생했습니다.");
+          console.error('좋아요한 멤버 정보를 불러오는 중 오류 발생:', membersError.message);
+          setError('멤버 정보를 불러오는 중 오류가 발생했습니다.');
         } else {
           setLikedMemberData((likedMembersData ?? []) as LikedMember[]); // 멤버 정보가 없으면 빈 배열로 설정
         }
       } catch (error) {
-        console.error("데이터 불러오는 중 오류 발생:", error);
-        setError("데이터 불러오는 중 오류가 발생했습니다.");
+        console.error('데이터 불러오는 중 오류 발생:', error);
+        setError('데이터 불러오는 중 오류가 발생했습니다.');
       } finally {
         setLoading(false); // 로딩 완료
       }
     };
-  
+
     void fetchLikedMembers();
   }, [userData]);
 
@@ -102,20 +100,20 @@ const MyPeoplePage: React.FC = () => {
         <p className="text-red-500">{error}</p>
       ) : likedMemberData.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-28">
-          {likedMemberData.map((member) => (
+          {likedMemberData.map(member => (
             <MemberCard
               key={member.user_id}
               user_id={member.user_id}
-              nickname={member.nickname ?? ""}
-              job_title={member.job_title ?? ""}
-              experience={member.experience ?? ""}
-              description={member.description ?? ""}
-              background_image_url={member.background_image_url ?? ""}
-              profile_image_url={secureImageUrl(member.profile_image_url ?? "")}
-              blog={member.blog ?? ""}
-              answer1={member.answer1 ?? ""}
-              answer2={member.answer2 ?? ""}
-              answer3={member.answer3 ?? ""}
+              nickname={member.nickname ?? ''}
+              job_title={member.job_title ?? ''}
+              experience={member.experience ?? ''}
+              description={member.description ?? ''}
+              background_image_url={member.background_image_url ?? ''}
+              profile_image_url={secureImageUrl(member.profile_image_url ?? '')}
+              blog={member.blog ?? ''}
+              answer1={member.answer1 ?? ''}
+              answer2={member.answer2 ?? ''}
+              answer3={member.answer3 ?? ''}
               first_link={member.first_link ?? undefined}
               first_link_type={member.first_link_type ?? undefined}
               second_link={member.second_link ?? undefined}

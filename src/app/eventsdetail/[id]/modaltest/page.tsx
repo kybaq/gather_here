@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useModal } from "@/provider/ContextProvider";
+import React from 'react';
+import { useModal } from '@/provider/ContextProvider';
 
 const ModalTest: React.FC = () => {
   const { openModal } = useModal();

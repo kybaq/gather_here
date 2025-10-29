@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 interface GatherHubLayoutProps {
-  children: ReactNode; 
+  children: ReactNode;
 }
 
 const GatherHubLayout: React.FC<GatherHubLayoutProps> = ({ children }) => {

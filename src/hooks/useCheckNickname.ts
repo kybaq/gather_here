@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { supabase } from "@/utils/supabase/client";
+import { useState, useEffect } from 'react';
+import { supabase } from '@/utils/supabase/client';
 
 const useCheckNickname = (nickname: string) => {
   const [nicknameAvailable, setNicknameAvailable] = useState<boolean | null>(null);
@@ -11,7 +11,7 @@ const useCheckNickname = (nickname: string) => {
 
       if (
         !nickname ||
-        typeof nickname !== "string" ||
+        typeof nickname !== 'string' ||
         nickname.length < 2 ||
         nickname.length > 11 ||
         specialCharPattern.test(nickname)
@@ -21,18 +21,18 @@ const useCheckNickname = (nickname: string) => {
       }
 
       // Supabase의 Users 테이블에서 닉네임을 조회하여 중복 여부 확인
-      const { data, error } = await supabase.from("Users").select("nickname").eq("nickname", nickname);
+      const { data, error } = await supabase.from('Users').select('nickname').eq('nickname', nickname);
 
       if (error) {
-        console.error("Error checking nickname availability:", error);
+        console.error('Error checking nickname availability:', error);
         return;
       }
-      
+
       // 닉네임이 사용 중이지 않으면 true, 사용 중이면 false로 설정
       setNicknameAvailable(data.length === 0);
     };
 
-   void checkNicknameAvailability();
+    void checkNicknameAvailability();
   }, [nickname]);
 
   return nicknameAvailable;

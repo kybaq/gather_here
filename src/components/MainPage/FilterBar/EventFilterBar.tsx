@@ -1,5 +1,5 @@
-"use client";
-import React from "react";
+'use client';
+import React from 'react';
 
 interface EventFilterBarProps {
   selectedCategory: string;
@@ -17,11 +17,11 @@ const EventFilterBar: React.FC<EventFilterBarProps> = ({ selectedCategory, onCha
       <div className="grid grid-cols-1 gap-2 w-full s:grid-cols-2 md:grid-cols-4 md:gap-3">
         <select
           className={`shared-select-gray-2 ${
-            selectedCategory ? "shared-select" : "shared-select-gray-2"
+            selectedCategory ? 'shared-select' : 'shared-select-gray-2'
           } cursor-pointer`}
           value={selectedCategory}
           onChange={handleCategoryChange}
-          style={{ height: "40px", minHeight: "40px", lineHeight: "15px", padding: "0 1rem" }}
+          style={{ height: '40px', minHeight: '40px', lineHeight: '15px', padding: '0 1rem' }}
         >
           <option value="">유형</option>
           <option value="공모전">공모전</option>
